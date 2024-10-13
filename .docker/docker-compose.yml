@@ -1,0 +1,18 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=archetype
+      - POSTGRES_PASSWORD=archetype
+      - POSTGRES_DB=archetype
+    volumes:
+      - ./src/main/resources/postgres:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+    networks:
+      - archetype
+networks:
+  archetype:
+    name: archetype
+    driver: bridge
